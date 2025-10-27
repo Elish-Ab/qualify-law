@@ -46,7 +46,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
             <div className="w-9 h-9 rounded-lg bg-white/20 flex items-center justify-center text-lg font-bold">
               LQ
             </div>
-            <span className="text-xl font-semibold tracking-tight">Qualify</span>
+            <span className="text-xl font-semibold tracking-tight">Qwalify</span>
           </div>
 
           <nav className="space-y-1">
@@ -71,7 +71,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         </div>
 
         <div className="text-xs text-white/70 text-center mt-8">
-          © {new Date().getFullYear()} Qualify
+          © {new Date().getFullYear()} Qwalify
         </div>
       </aside>
 

@@ -167,8 +167,8 @@ export const AirtableDAL = {
           fields: {
             name: u.name,
             email: u.email,
-            password: u.passwordHash, // ✅ correct column name
-            clientId: u.clientId,     // ✅ plain text
+            password: u.passwordHash, 
+            clientId: u.clientId,  
             // ❌ Do NOT include "Client Name (from Clients)" — it's a lookup field
           },
         },

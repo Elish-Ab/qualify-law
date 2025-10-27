@@ -30,7 +30,7 @@ export default function HomePage() {
             <div className="w-9 h-9 bg-gradient-to-tr from-blue-600 to-indigo-500 rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-md">
               Q
             </div>
-            <span className="text-lg font-bold tracking-tight">Qualify</span>
+            <span className="text-lg font-bold tracking-tight">Qwalify</span>
           </Link>
 
           {/* Desktop Menu */}
@@ -95,7 +95,7 @@ export default function HomePage() {
             From Enquiry to Conversion — In Minutes
           </h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-8">
-            Qualify automates how you capture, score, and nurture incoming
+            Qwalify automates how you capture, score, and nurture incoming
             leads — turning every enquiry into an opportunity faster than ever.
           </p>
           <Link href="/leads">
@@ -172,7 +172,7 @@ export default function HomePage() {
         className="py-10 text-center text-sm text-gray-500 bg-white border-t"
       >
         <p>
-          © {new Date().getFullYear()} Qualify Automation Platform
+          © {new Date().getFullYear()} Qwalify Automation Platform
         </p>
       </footer>
     </main>
