@@ -26,7 +26,7 @@ export default function AdminClientPage() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen text-gray-500">
+      <div className="flex items-center justify-center min-h-screen bg-white text-[#5A1FCC]/70">
         Loading client data...
       </div>
     );
@@ -34,14 +34,14 @@ export default function AdminClientPage() {
 
   if (!clientData) {
     return (
-      <div className="flex items-center justify-center min-h-screen text-gray-400">
+      <div className="flex items-center justify-center min-h-screen bg-white text-[#5A1FCC]/60">
         No client data found.
       </div>
     );
   }
 
   return (
-    <div className="p-6 max-w-6xl mx-auto">
+    <div className="p-6 max-w-6xl mx-auto bg-white text-[#5A1FCC]">
       <ClientDetails data={clientData} />
     </div>
   );

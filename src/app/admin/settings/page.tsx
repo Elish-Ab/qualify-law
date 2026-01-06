@@ -6,9 +6,9 @@ import { LogOut } from "lucide-react";
 
 export default function AdminSettingsPage() {
   return (
-    <div className="min-h-screen flex bg-gray-50">
+    <div className="min-h-screen flex bg-white text-[#5A1FCC]">
       {/* Sidebar (same style as dashboard) */}
-      <aside className="w-64 bg-gradient-to-b from-slate-900 via-slate-800 to-amber-700 text-white p-6 flex flex-col">
+      <aside className="w-64 bg-[#5A1FCC] text-white p-6 flex flex-col">
         <h2 className="text-2xl font-bold mb-8">Qwalify Portal</h2>
         <nav className="flex flex-col space-y-3">
           <Link
@@ -30,20 +30,20 @@ export default function AdminSettingsPage() {
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 p-8">
-        <h1 className="text-3xl font-bold mb-6 text-gray-800">Settings</h1>
+      <main className="flex-1 p-8 bg-white text-[#5A1FCC]">
+        <h1 className="text-3xl font-bold mb-6">Settings</h1>
 
-        <div className="max-w-lg bg-white rounded-xl shadow-md border border-gray-100 p-8">
-          <h2 className="text-xl font-semibold text-gray-800 mb-2">
+        <div className="max-w-lg bg-white rounded-xl shadow-md border border-[#5A1FCC]/20 p-8">
+          <h2 className="text-xl font-semibold mb-2">
             Admin Session
           </h2>
-          <p className="text-gray-500 mb-6">
+          <p className="text-[#5A1FCC]/70 mb-6">
             You are securely logged into the Qualify Admin portal.
           </p>
 
           <button
             onClick={() => signOut({ callbackUrl: "/admin/login" })}
-            className="flex items-center gap-2 px-5 py-2.5 bg-red-600 text-white rounded-md hover:bg-red-700 transition"
+            className="flex items-center gap-2 px-5 py-2.5 bg-[#5A1FCC] text-white rounded-md hover:bg-[#924bff] transition"
           >
             <LogOut className="w-4 h-4" />
             Log out

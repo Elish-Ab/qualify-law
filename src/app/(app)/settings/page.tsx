@@ -48,16 +48,16 @@ export default function SettingsPage() {
   }
 
   return (
-    <div className="max-w-xl space-y-6">
+    <div className="max-w-xl space-y-6 text-[#5A1FCC]">
       <h2 className="text-xl font-semibold">Account Settings</h2>
-      <p className="text-sm text-gray-600">
+      <p className="text-sm text-[#5A1FCC]/70">
         Manage your profile information and contact details.
       </p>
 
       <div className="space-y-4">
         {["name", "email", "phone", "company"].map((field) => (
           <div key={field}>
-            <label className="block text-sm font-medium text-gray-700 mb-1 capitalize">
+            <label className="block text-sm font-medium text-[#5A1FCC] mb-1 capitalize">
               {field}
             </label>
             <input
@@ -66,7 +66,7 @@ export default function SettingsPage() {
               onChange={(e) =>
                 setFormData({ ...formData, [field]: e.target.value })
               }
-              className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-blue-500 focus:border-blue-500"
+              className="w-full border border-[#5A1FCC]/30 rounded-md px-3 py-2 focus:ring-[#5A1FCC] focus:border-[#5A1FCC]"
               disabled={field === "email"} // email not editable
             />
           </div>
@@ -77,11 +77,11 @@ export default function SettingsPage() {
         <button
           onClick={handleSave}
           disabled={isSaving}
-          className="bg-blue-600 text-white px-5 py-2 rounded-md hover:bg-blue-700 transition disabled:opacity-60"
+          className="bg-[#5A1FCC] text-white px-5 py-2 rounded-md hover:bg-[#924bff] transition disabled:opacity-60"
         >
           {isSaving ? "Saving..." : "Save Changes"}
         </button>
-        {status && <p className="text-sm text-gray-700">{status}</p>}
+        {status && <p className="text-sm text-[#5A1FCC]/80">{status}</p>}
       </div>
     </div>
   );

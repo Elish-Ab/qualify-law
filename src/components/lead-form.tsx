@@ -56,35 +56,45 @@ export default function LeadForm({ onCreated }: { onCreated?: () => void }) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="space-y-4 p-2 bg-white rounded-lg"
+      className="space-y-4 p-2 bg-white rounded-lg text-[#5A1FCC]"
     >
-      <h2 className="text-lg font-semibold mb-2">Lead Information</h2>
+      <h2 className="text-lg font-semibold mb-2 text-[#5A1FCC]">
+        Lead Information
+      </h2>
 
       <div className="grid grid-cols-2 gap-4">
         <div>
-          <Label htmlFor="firstName">First Name</Label>
+          <Label htmlFor="firstName" className="text-[#5A1FCC]">
+            First Name
+          </Label>
           <Input
             id="firstName"
             placeholder="Enter first name"
             value={form.firstName}
             onChange={(e) => setForm({ ...form, firstName: e.target.value })}
             required
+            className="border-[#5A1FCC]/30 focus-visible:ring-[#5A1FCC]"
           />
         </div>
         <div>
-          <Label htmlFor="lastName">Last Name</Label>
+          <Label htmlFor="lastName" className="text-[#5A1FCC]">
+            Last Name
+          </Label>
           <Input
             id="lastName"
             placeholder="Enter last name"
             value={form.lastName}
             onChange={(e) => setForm({ ...form, lastName: e.target.value })}
             required
+            className="border-[#5A1FCC]/30 focus-visible:ring-[#5A1FCC]"
           />
         </div>
       </div>
 
       <div>
-        <Label htmlFor="email">Email</Label>
+        <Label htmlFor="email" className="text-[#5A1FCC]">
+          Email
+        </Label>
         <Input
           id="email"
           type="email"
@@ -92,11 +102,14 @@ export default function LeadForm({ onCreated }: { onCreated?: () => void }) {
           value={form.email}
           onChange={(e) => setForm({ ...form, email: e.target.value })}
           required
+          className="border-[#5A1FCC]/30 focus-visible:ring-[#5A1FCC]"
         />
       </div>
 
       <div>
-        <Label htmlFor="phone">Phone</Label>
+        <Label htmlFor="phone" className="text-[#5A1FCC]">
+          Phone
+        </Label>
         <Input
           id="phone"
           type="tel"
@@ -104,26 +117,32 @@ export default function LeadForm({ onCreated }: { onCreated?: () => void }) {
           value={form.phone}
           onChange={(e) => setForm({ ...form, phone: e.target.value })}
           required
+          className="border-[#5A1FCC]/30 focus-visible:ring-[#5A1FCC]"
         />
       </div>
 
       <div>
-        <Label htmlFor="message">Message</Label>
+        <Label htmlFor="message" className="text-[#5A1FCC]">
+          Message
+        </Label>
         <Textarea
           id="message"
           placeholder="Describe the inquiry or interest"
           value={form.message}
           onChange={(e) => setForm({ ...form, message: e.target.value })}
+          className="border-[#5A1FCC]/30 focus-visible:ring-[#5A1FCC]"
         />
       </div>
 
       <div>
-        <Label htmlFor="source">Source</Label>
+        <Label htmlFor="source" className="text-[#5A1FCC]">
+          Source
+        </Label>
         <Select
           value={form.source}
           onValueChange={(v) => setForm({ ...form, source: v })}
         >
-          <SelectTrigger>
+          <SelectTrigger className="border-[#5A1FCC]/30 focus-visible:ring-[#5A1FCC] text-[#5A1FCC]">
             <SelectValue placeholder="Select source" />
           </SelectTrigger>
           <SelectContent>
@@ -137,12 +156,17 @@ export default function LeadForm({ onCreated }: { onCreated?: () => void }) {
       </div>
 
       <div className="flex justify-end gap-3 mt-6">
-        <Button type="submit" disabled={loading}>
+        <Button
+          type="submit"
+          disabled={loading}
+          className="bg-[#5A1FCC] text-white hover:bg-[#924bff]"
+        >
           {loading ? "Saving..." : "Save"}
         </Button>
         <Button
           type="button"
           variant="outline"
+          className="text-[#5A1FCC] border-[#5A1FCC]/40 hover:bg-[#5A1FCC]/10"
           onClick={() =>
             setForm({
               firstName: "",

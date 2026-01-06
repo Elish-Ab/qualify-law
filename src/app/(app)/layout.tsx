@@ -39,9 +39,9 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   }, []);
 
   return (
-    <div className="flex min-h-screen bg-gray-50 text-gray-900">
+    <div className="flex min-h-screen bg-white text-[#5A1FCC]">
       {/* Sidebar */}
-      <aside className="w-[240px] bg-gradient-to-b from-slate-900 via-slate-800 to-amber-700 text-white flex flex-col justify-between p-6 shadow-lg">
+      <aside className="w-[240px] bg-[#5A1FCC] text-white flex flex-col justify-between p-6 shadow-lg">
         <div>
           <div className="flex items-center gap-3 mb-10">
             <div className="w-9 h-9 rounded-lg bg-white/20 flex items-center justify-center text-lg font-bold">
@@ -59,7 +59,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                   href={link.href}
                   className={`flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium transition-all ${
                     isActive
-                      ? "bg-white/15 shadow-sm"
+                      ? "bg-white/20 shadow-sm"
                       : "hover:bg-white/10 hover:translate-x-1"
                   }`}
                 >
@@ -79,8 +79,8 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
       {/* Main Content */}
       <div className="flex-1 flex flex-col">
         {/* Top Navbar */}
-        <header className="flex justify-between items-center bg-white border-b border-gray-200 px-8 py-4 sticky top-0 z-10">
-          <h1 className="text-lg font-semibold">
+        <header className="flex justify-between items-center bg-white border-b border-[#5A1FCC]/10 px-8 py-4 sticky top-0 z-10">
+          <h1 className="text-lg font-semibold text-[#5A1FCC]">
             {pathname === "/dashboard"
               ? "Dashboard Overview"
               : pathname === "/leads"
@@ -92,7 +92,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           <div className="relative" ref={dropdownRef}>
             <button
               onClick={() => setOpen((prev) => !prev)}
-              className="flex items-center gap-2 cursor-pointer hover:bg-gray-100 px-3 py-1 rounded-full transition"
+              className="flex items-center gap-2 cursor-pointer hover:bg-[#5A1FCC]/10 px-3 py-1 rounded-full transition"
             >
               <Image
                 src={avatar}
@@ -102,26 +102,26 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                 className="w-8 h-8 rounded-full object-cover"
                 unoptimized
               />
-              <span className="text-sm font-medium text-gray-700">{displayName}</span>
+              <span className="text-sm font-medium text-[#5A1FCC]">{displayName}</span>
             </button>
 
             {open && (
-              <div className="absolute right-0 mt-2 w-44 bg-white border border-gray-200 rounded-md shadow-lg py-1 animate-fadeIn">
-                <div className="px-4 py-2 text-sm text-gray-600 border-b">
+              <div className="absolute right-0 mt-2 w-44 bg-white border border-[#5A1FCC]/15 rounded-md shadow-lg py-1 animate-fadeIn">
+                <div className="px-4 py-2 text-sm text-[#5A1FCC]/70 border-b border-[#5A1FCC]/10">
                   Signed in as
-                  <div className="font-medium text-gray-900 truncate">
+                  <div className="font-medium text-[#5A1FCC] truncate">
                     {user.email || displayName}
                   </div>
                 </div>
                 <Link
                   href="/settings"
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  className="block px-4 py-2 text-sm text-[#5A1FCC] hover:bg-[#5A1FCC]/10"
                 >
                   ⚙️ Account Settings
                 </Link>
                 <button
                   onClick={() => signOut({ callbackUrl: "/" })}
-                  className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50"
+                  className="w-full text-left px-4 py-2 text-sm text-[#5A1FCC] hover:bg-[#5A1FCC]/10"
                 >
                   🚪 Logout
                 </button>
@@ -131,7 +131,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         </header>
 
         {/* Page Content */}
-        <main className="flex-1 p-8">{children}</main>
+        <main className="flex-1 p-8 bg-white">{children}</main>
       </div>
 
       <Toaster richColors position="top-right" />

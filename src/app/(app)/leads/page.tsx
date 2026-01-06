@@ -9,32 +9,32 @@ export default function LeadsPage() {
   const [view, setView] = useState<"form" | "csv">("form");
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-50 via-stone-50 to-white text-slate-900 px-6 py-12">
+    <div className="min-h-screen bg-white text-[#5A1FCC] px-6 py-12">
       <div className="max-w-6xl mx-auto space-y-8">
         <div className="text-center md:text-left">
-          <p className="text-xs uppercase tracking-[0.35em] text-amber-600 mb-2">
+          <p className="text-xs uppercase tracking-[0.35em] text-[#5A1FCC] mb-2">
             Qwalify Client Portal
           </p>
           <h1 className="text-4xl font-semibold mb-3">
-            Trade Records Workspace
+            Service Records Workspace
           </h1>
-          <p className="text-slate-600 max-w-3xl">
+          <p className="text-[#5A1FCC]/80 max-w-3xl">
             Review live client submissions, add quick records, or import CSVs in
-            the same polished environment clients experience on the homepage.
+            the same polished environment homeowners see on the homepage.
           </p>
         </div>
 
         <div className="grid md:grid-cols-[1fr_380px] gap-6 items-start">
           {/* Left: Lead Table */}
-          <Card className="border border-slate-100 shadow-lg rounded-3xl bg-white/95 backdrop-blur p-6">
+          <Card className="border border-[#5A1FCC]/20 shadow-lg rounded-3xl bg-white p-6">
             <div className="flex items-center justify-between mb-4">
               <div>
                 <h2 className="text-xl font-semibold">Client Records</h2>
-                <p className="text-sm text-slate-500">
-                  Search, filter, and drill into shipments in one pane.
+                <p className="text-sm text-[#5A1FCC]/70">
+                  Search, filter, and drill into jobs in one pane.
                 </p>
               </div>
-              <span className="text-xs uppercase tracking-[0.2em] text-slate-400">
+              <span className="text-xs uppercase tracking-[0.2em] text-[#5A1FCC]/60">
                 Live view
               </span>
             </div>
@@ -42,13 +42,13 @@ export default function LeadsPage() {
           </Card>
 
           {/* Right: Add Lead / CSV Import */}
-          <Card className="border border-slate-100 shadow-lg rounded-3xl bg-white/95 backdrop-blur p-6">
+          <Card className="border border-[#5A1FCC]/20 shadow-lg rounded-3xl bg-white p-6">
             <div className="flex justify-between items-center mb-4">
               <div>
                 <h3 className="text-lg font-semibold">
-                  {view === "form" ? "Add a Trade Record" : "Upload Records"}
+                  {view === "form" ? "Add a Service Record" : "Upload Records"}
                 </h3>
-                <p className="text-sm text-slate-500">
+                <p className="text-sm text-[#5A1FCC]/70">
                   Capture one-off enquiries or import a batch from CSV.
                 </p>
               </div>
@@ -56,10 +56,10 @@ export default function LeadsPage() {
                 <Button
                   size="sm"
                   variant="outline"
-                  className={`rounded-full border-slate-200 text-xs px-4 ${
+                  className={`rounded-full border border-[#5A1FCC]/30 text-xs px-4 ${
                     view === "form"
-                      ? "bg-gradient-to-r from-slate-900 via-slate-800 to-amber-600 text-white border-0 shadow"
-                      : "text-slate-700 bg-white"
+                      ? "bg-[#5A1FCC] text-white border-0 shadow"
+                      : "text-[#5A1FCC] bg-white"
                   }`}
                   onClick={() => setView("form")}
                 >
@@ -68,10 +68,10 @@ export default function LeadsPage() {
                 <Button
                   size="sm"
                   variant="outline"
-                  className={`rounded-full border-slate-200 text-xs px-4 ${
+                  className={`rounded-full border border-[#5A1FCC]/30 text-xs px-4 ${
                     view === "csv"
-                      ? "bg-gradient-to-r from-slate-900 via-slate-800 to-amber-600 text-white border-0 shadow"
-                      : "text-slate-700 bg-white"
+                      ? "bg-[#5A1FCC] text-white border-0 shadow"
+                      : "text-[#5A1FCC] bg-white"
                   }`}
                   onClick={() => setView("csv")}
                 >
@@ -81,22 +81,22 @@ export default function LeadsPage() {
             </div>
 
             {view === "form" ? (
-              <div className="bg-slate-50/80 rounded-2xl p-4 border border-slate-100">
+              <div className="bg-[#5A1FCC]/5 rounded-2xl p-4 border border-[#5A1FCC]/20">
                 <LeadForm onCreated={() => window.location.reload()} />
               </div>
             ) : (
-              <div className="p-4 border border-dashed rounded-2xl bg-slate-50/60">
-                <p className="text-sm text-slate-600 mb-3">
+              <div className="p-4 border border-dashed border-[#5A1FCC]/30 rounded-2xl bg-[#5A1FCC]/5">
+                <p className="text-sm text-[#5A1FCC]/80 mb-3">
                   Upload a CSV file with your leads. The file must include:
                 </p>
-                <ul className="text-xs text-slate-500 list-disc pl-5 mb-4 space-y-1">
+                <ul className="text-xs text-[#5A1FCC]/70 list-disc pl-5 mb-4 space-y-1">
                   <li>firstName</li>
                   <li>lastName</li>
                   <li>email</li>
                   <li>phone</li>
                   <li>source</li>
                 </ul>
-                <label className="block w-full text-center border border-slate-200 rounded-xl py-3 text-sm font-medium text-slate-700 bg-white hover:bg-slate-50 transition cursor-pointer">
+                <label className="block w-full text-center border border-[#5A1FCC]/30 rounded-xl py-3 text-sm font-medium text-[#5A1FCC] bg-white hover:bg-[#5A1FCC]/5 transition cursor-pointer">
                   <input type="file" accept=".csv" className="hidden" />
                   Select CSV File
                 </label>

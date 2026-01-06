@@ -46,7 +46,7 @@ export default function LeadTable() {
   };
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-3 text-[#5A1FCC]">
       {/* Filters */}
       <div className="flex gap-2 items-center flex-wrap">
         <Input
@@ -58,34 +58,35 @@ export default function LeadTable() {
               void load();
             }
           }}
-          className="max-w-sm"
+          className="max-w-sm border-[#5A1FCC]/30 focus-visible:ring-[#5A1FCC]"
         />
         <Input
           placeholder="Filter status"
           value={filterStatus}
           onChange={(e) => setFilterStatus(e.target.value)}
-          className="max-w-[180px]"
+          className="max-w-[180px] border-[#5A1FCC]/30 focus-visible:ring-[#5A1FCC]"
         />
         <Input
           placeholder="Filter score"
           value={filterScore}
           onChange={(e) => setFilterScore(e.target.value)}
-          className="max-w-[140px]"
+          className="max-w-[140px] border-[#5A1FCC]/30 focus-visible:ring-[#5A1FCC]"
         />
         <Button
           onClick={() => {
             void load();
           }}
+          className="bg-[#5A1FCC] text-white hover:bg-[#924bff]"
         >
           Apply
         </Button>
       </div>
 
       {/* Table */}
-      <div className="border rounded-lg shadow-sm overflow-hidden bg-white">
+      <div className="border border-[#5A1FCC]/20 rounded-lg shadow-sm overflow-hidden bg-white">
         <table className="w-full text-sm border-collapse">
-          <thead className="bg-gray-50 sticky top-0">
-            <tr className="text-left text-gray-700 font-medium">
+          <thead className="bg-[#5A1FCC]/10 sticky top-0">
+            <tr className="text-left text-[#5A1FCC] font-medium">
               <th className="p-3">Name</th>
               <th className="p-3">Email</th>
               <th className="p-3">Phone</th>
@@ -101,54 +102,39 @@ export default function LeadTable() {
               <tr
                 key={l.id}
                 className={`${
-                  i % 2 === 0 ? "bg-gray-50/40" : "bg-white"
-                } border-t hover:bg-blue-50/40 transition-colors`}
+                  i % 2 === 0 ? "bg-[#5A1FCC]/5" : "bg-white"
+                } border-t border-[#5A1FCC]/10 hover:bg-[#5A1FCC]/10 transition-colors`}
               >
-                <td className="p-3 font-medium text-blue-700">
+                <td className="p-3 font-medium text-[#5A1FCC]">
                   <Link className="hover:underline" href={`/leads/${l.id}`}>
                     {l.firstName} {l.lastName}
                   </Link>
                 </td>
-                <td className="p-3 text-gray-700">{l.email}</td>
-                <td className="p-3 text-gray-700">{l.phone}</td>
+                <td className="p-3 text-[#5A1FCC]/80">{l.email}</td>
+                <td className="p-3 text-[#5A1FCC]/80">{l.phone}</td>
                 <td className="p-3">
-                  <Badge
-                    variant="secondary"
-                    className="capitalize bg-gray-100 text-gray-700"
-                  >
+                  <Badge className="capitalize bg-[#5A1FCC]/10 text-[#5A1FCC]">
                     {l.source}
                   </Badge>
                 </td>
                 <td className="p-3">
                   <Badge
-                    className={`capitalize ${
-                      l.status === "Archived"
-                        ? "bg-gray-200 text-gray-600"
-                        : "bg-blue-100 text-blue-700"
-                    }`}
+                    className="capitalize bg-[#5A1FCC]/10 text-[#5A1FCC]"
                   >
                     {l.status}
                   </Badge>
                 </td>
                 <td className="p-3">
                   <span
-                    className={`px-2 py-1 rounded-full text-xs font-semibold ${
-                      l.score === "Hot"
-                        ? "bg-red-100 text-red-700"
-                        : l.score === "Warm"
-                        ? "bg-amber-100 text-amber-700"
-                        : l.score === "Cold"
-                        ? "bg-blue-100 text-blue-700"
-                        : "bg-gray-100 text-gray-500"
-                    }`}
+                    className="px-2 py-1 rounded-full text-xs font-semibold bg-[#5A1FCC]/15 text-[#5A1FCC]"
                   >
                     {l.score || "-"}
                   </span>
                 </td>
-                <td className="p-3 text-gray-600 italic">
+                <td className="p-3 text-[#5A1FCC]/70 italic">
                   {l.scoringReason || "-"}
                 </td>
-                <td className="p-3 text-right text-xs text-gray-500">
+                <td className="p-3 text-right text-xs text-[#5A1FCC]/60">
                   {l.createdTime
                     ? new Date(l.createdTime).toLocaleDateString()
                     : "-"}
@@ -160,7 +146,7 @@ export default function LeadTable() {
       </div>
 
       {/* Footer */}
-      <div className="text-xs text-muted-foreground">
+      <div className="text-xs text-[#5A1FCC]/70">
         Showing {items.length} leads
       </div>
     </div>

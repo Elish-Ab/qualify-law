@@ -23,10 +23,10 @@ export default function AdminLoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
+    <div className="min-h-screen flex items-center justify-center bg-white text-[#5A1FCC]">
       <form
         onSubmit={handleSubmit}
-        className="bg-white shadow-lg p-8 rounded-xl w-96 space-y-4"
+        className="bg-white border border-[#5A1FCC]/20 shadow-lg p-8 rounded-xl w-96 space-y-4"
       >
         <h1 className="text-xl font-semibold text-center">Admin Login</h1>
         <input
@@ -34,19 +34,19 @@ export default function AdminLoginPage() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Admin email"
-          className="border rounded-lg w-full px-3 py-2"
+          className="border border-[#5A1FCC]/30 rounded-lg w-full px-3 py-2 focus:ring-[#5A1FCC] focus:border-[#5A1FCC]"
         />
         <input
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
-          className="border rounded-lg w-full px-3 py-2"
+          className="border border-[#5A1FCC]/30 rounded-lg w-full px-3 py-2 focus:ring-[#5A1FCC] focus:border-[#5A1FCC]"
         />
-        {error && <p className="text-red-500 text-sm">{error}</p>}
+        {error && <p className="text-sm text-[#5A1FCC]">{error}</p>}
         <button
           type="submit"
-          className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg"
+          className="w-full bg-[#5A1FCC] hover:bg-[#924bff] text-white py-2 rounded-lg transition"
         >
           Sign In
         </button>
