@@ -20,7 +20,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { Users, Flame, TrendingUp } from "lucide-react";
+import { Ship, ClipboardList, ShieldCheck } from "lucide-react";
 
 type Lead = {
   id?: string;
@@ -36,9 +36,9 @@ type KpiCardProps = {
 };
 
 const COLORS = {
-  Hot: "#ef4444",
-  Warm: "#f59e0b",
-  Cold: "#3b82f6",
+  Hot: "#f97316",
+  Warm: "#facc15",
+  Cold: "#0ea5e9",
 };
 
 export default function Dashboard() {
@@ -70,45 +70,58 @@ export default function Dashboard() {
 
   return (
     <motion.div
-      className="min-h-screen bg-gradient-to-br from-[#f9fafb] to-[#f3f4f6] flex flex-col items-center px-6 py-10"
+      className="min-h-screen bg-gradient-to-b from-slate-50 via-stone-50 to-white flex flex-col items-center px-6 py-12 text-slate-900"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
     >
-      <div className="w-full max-w-6xl">
-        <h1 className="text-4xl font-semibold tracking-tight mb-10 text-gray-800">
-          Lead Intelligence Overview
-        </h1>
+      <div className="w-full max-w-6xl space-y-8">
+        <div className="text-center md:text-left">
+          <p className="text-xs uppercase tracking-[0.35em] text-amber-600 mb-2">
+            Qwalify Client Portal
+          </p>
+          <h1 className="text-4xl font-semibold tracking-tight mb-3">
+            Trade Client Dashboard
+          </h1>
+          <p className="text-slate-600 max-w-3xl">
+            Review current trade requests, priority shipments, and compliance
+            readiness as soon as you log in. Every card below keeps your team
+            aligned with what clients see in the portal.
+          </p>
+        </div>
 
         {/* KPI SECTION */}
-        <div className="grid md:grid-cols-3 gap-6 mb-10">
+        <div className="grid md:grid-cols-3 gap-6">
           <KpiCard
-            title="Total Leads"
+            title="Total Trade Records"
             value={totalLeads}
-            icon={<Users className="w-6 h-6 text-blue-500" />}
+            icon={<ClipboardList className="w-6 h-6 text-slate-900" />}
+            accent="from-slate-900 via-slate-800 to-amber-600"
           />
           <KpiCard
-            title="Hot Leads"
+            title="High Priority Shipments"
             value={hotLeads}
-            icon={<Flame className="w-6 h-6 text-red-500" />}
+            icon={<Ship className="w-6 h-6 text-amber-600" />}
+            accent="from-amber-500 to-amber-600"
           />
           <KpiCard
-            title="Conversion Potential"
+            title="Priority Ratio"
             value={`${conversion}%`}
-            icon={<TrendingUp className="w-6 h-6 text-green-500" />}
+            icon={<ShieldCheck className="w-6 h-6 text-emerald-600" />}
+            accent="from-emerald-500 to-emerald-600"
           />
         </div>
 
         {/* CHARTS */}
         <div className="grid md:grid-cols-2 gap-8">
-          <Card className="border-none shadow-md rounded-2xl bg-white/80 backdrop-blur">
+          <Card className="border border-slate-100 shadow-lg rounded-2xl bg-white/90 backdrop-blur">
             <CardHeader>
-              <CardTitle className="text-gray-800 font-semibold text-lg">
-                Lead Scores
+              <CardTitle className="text-slate-900 font-semibold text-lg">
+                Priority Mix
               </CardTitle>
             </CardHeader>
             <CardContent>
               {loading ? (
-                <p className="text-gray-500 text-sm">Loading...</p>
+                <p className="text-slate-500 text-sm">Syncing shipment data…</p>
               ) : (
                 <div className="h-64">
                   <ResponsiveContainer width="100%" height="100%">
@@ -139,10 +152,10 @@ export default function Dashboard() {
             </CardContent>
           </Card>
 
-          <Card className="border-none shadow-md rounded-2xl bg-white/80 backdrop-blur">
+          <Card className="border border-slate-100 shadow-lg rounded-2xl bg-white/90 backdrop-blur">
             <CardHeader>
-              <CardTitle className="text-gray-800 font-semibold text-lg">
-                Status Distribution
+              <CardTitle className="text-slate-900 font-semibold text-lg">
+                Shipment Lifecycle Status
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -152,13 +165,17 @@ export default function Dashboard() {
                     <XAxis dataKey="name" />
                     <YAxis />
                     <Tooltip />
-                    <Bar dataKey="count" fill="#6366f1" radius={[5, 5, 0, 0]} />
+                    <Bar
+                      dataKey="count"
+                      fill="#1e293b"
+                      radius={[6, 6, 0, 0]}
+                    />
                   </BarChart>
                 </ResponsiveContainer>
               </div>
-              <p className="text-gray-500 text-sm mt-3">
-                Total leads:{" "}
-                <span className="font-medium text-gray-700">{totalLeads}</span>
+              <p className="text-slate-500 text-sm mt-3">
+                Total records:{" "}
+                <span className="font-medium text-slate-900">{totalLeads}</span>
               </p>
             </CardContent>
           </Card>
@@ -168,17 +185,26 @@ export default function Dashboard() {
   );
 }
 
-function KpiCard({ title, value, icon }: KpiCardProps) {
+function KpiCard({
+  title,
+  value,
+  icon,
+  accent = "from-slate-900 to-slate-700",
+}: KpiCardProps & { accent?: string }) {
   return (
     <motion.div
       whileHover={{ y: -2 }}
-      className="bg-white/90 backdrop-blur border border-gray-100 shadow-sm rounded-2xl px-6 py-5 flex items-center justify-between"
+      className="bg-white/95 backdrop-blur border border-slate-100 shadow-sm rounded-2xl px-6 py-5 flex items-center justify-between"
     >
       <div>
-        <p className="text-gray-500 text-sm font-medium">{title}</p>
-        <p className="text-3xl font-semibold text-gray-800 mt-1">{value}</p>
+        <p className="text-slate-500 text-sm font-medium">{title}</p>
+        <p className="text-3xl font-semibold text-slate-900 mt-1">{value}</p>
       </div>
-      <div className="bg-gray-50 p-3 rounded-full shadow-inner">{icon}</div>
+      <div
+        className={`p-3 rounded-full shadow-inner bg-gradient-to-br ${accent} text-white`}
+      >
+        {icon}
+      </div>
     </motion.div>
   );
 }

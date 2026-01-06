@@ -8,10 +8,13 @@ export default function AdminSettingsPage() {
   return (
     <div className="min-h-screen flex bg-gray-50">
       {/* Sidebar (same style as dashboard) */}
-      <aside className="w-64 bg-blue-700 text-white p-6 flex flex-col">
-        <h2 className="text-2xl font-bold mb-8">LeadIQ Admin</h2>
+      <aside className="w-64 bg-gradient-to-b from-slate-900 via-slate-800 to-amber-700 text-white p-6 flex flex-col">
+        <h2 className="text-2xl font-bold mb-8">Qwalify Portal</h2>
         <nav className="flex flex-col space-y-3">
-          <Link href="/admin" className="hover:bg-blue-800 px-4 py-2 rounded-md">
+          <Link
+            href="/admin"
+            className="hover:bg-white/10 px-4 py-2 rounded-md transition"
+          >
             Dashboard
           </Link>
           <Link
@@ -21,7 +24,7 @@ export default function AdminSettingsPage() {
             Settings
           </Link>
         </nav>
-        <div className="mt-auto pt-6 border-t border-blue-600 text-sm text-blue-200">
+        <div className="mt-auto pt-6 border-t border-white/20 text-sm text-white/80">
           Signed in as Admin
         </div>
       </aside>

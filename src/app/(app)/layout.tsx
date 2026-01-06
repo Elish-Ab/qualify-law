@@ -41,13 +41,13 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex min-h-screen bg-gray-50 text-gray-900">
       {/* Sidebar */}
-      <aside className="w-[240px] bg-gradient-to-b from-blue-600 to-blue-700 text-white flex flex-col justify-between p-6 shadow-lg">
+      <aside className="w-[240px] bg-gradient-to-b from-slate-900 via-slate-800 to-amber-700 text-white flex flex-col justify-between p-6 shadow-lg">
         <div>
           <div className="flex items-center gap-3 mb-10">
             <div className="w-9 h-9 rounded-lg bg-white/20 flex items-center justify-center text-lg font-bold">
               LQ
             </div>
-            <span className="text-xl font-semibold tracking-tight">Qwalify</span>
+            <span className="text-xl font-semibold tracking-tight">Qwalify Portal</span>
           </div>
 
           <nav className="space-y-1">
@@ -59,7 +59,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                   href={link.href}
                   className={`flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium transition-all ${
                     isActive
-                      ? "bg-white/20 shadow-sm"
+                      ? "bg-white/15 shadow-sm"
                       : "hover:bg-white/10 hover:translate-x-1"
                   }`}
                 >

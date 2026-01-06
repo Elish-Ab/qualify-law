@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowRight, Menu, X, Gavel, ShieldCheck, FileText } from "lucide-react";
+import { ArrowRight, Menu, X, Globe, ShieldCheck, Package } from "lucide-react";
 
 export default function HomePage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -30,10 +30,10 @@ export default function HomePage() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
             <div className="w-9 h-9 bg-gradient-to-tr from-slate-900 to-amber-600 rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-md">
-              L
+              Q
             </div>
             <span className="text-lg font-bold tracking-tight">
-              Qualify Intake
+              Qwalify Client Portal
             </span>
           </Link>
 
@@ -98,20 +98,23 @@ export default function HomePage() {
         {/* Animated Gradient Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-slate-200 via-white to-amber-100 animate-gradient-xy opacity-60" />
         <div className="relative z-10">
-          <h1 className="text-5xl md:text-6xl font-bold leading-tight mb-6 bg-gradient-to-r from-slate-900 via-slate-700 to-amber-600 bg-clip-text text-transparent">
-            Client Intake Built for Modern Law Firms
+          <p className="text-sm uppercase tracking-[0.25em] text-amber-600 mb-4">
+            Trade Operations · Client Access
+          </p>
+          <h1 className="text-4xl md:text-5xl font-semibold leading-tight mb-4 text-slate-900">
+            Qwalify Client Portal for Trade & Logistics Teams
           </h1>
           <p className="text-lg text-slate-600 max-w-2xl mx-auto mb-8">
-            Qualify Intake centralizes every enquiry, qualifies the matter, and
-            briefs your team so attorneys reach new clients with confidence in
-            minutes—not days.
+            Give your customers a single workspace to submit trade enquiries,
+            track shipments, upload documentation, and collaborate with your
+            operations desk in real time.
           </p>
           <Link href="/leads">
             <Button
               size="lg"
               className="rounded-full px-8 py-6 bg-gradient-to-r from-slate-900 via-slate-800 to-amber-600 hover:scale-105 transition-transform text-white font-semibold shadow-lg"
             >
-              Book a Strategy Call <ArrowRight className="ml-2 w-5 h-5" />
+              Enter Client Portal <ArrowRight className="ml-2 w-5 h-5" />
             </Button>
           </Link>
         </div>
@@ -124,19 +127,19 @@ export default function HomePage() {
       >
         {[
           {
-            icon: <Gavel className="w-10 h-10 text-amber-600" />,
-            title: "Case-Ready Intake",
-            desc: "Route enquiries to the right practice group, flag conflicts instantly, and set expectations before the consult.",
+            icon: <Globe className="w-10 h-10 text-amber-600" />,
+            title: "Live Shipment Visibility",
+            desc: "Surface status, ETAs, and milestone alerts for every cross-border shipment your team manages.",
           },
           {
-            icon: <FileText className="w-10 h-10 text-slate-700" />,
-            title: "Guided Client Experience",
-            desc: "Collect facts, documents, and signatures through white-glove digital questionnaires branded for your firm.",
+            icon: <Package className="w-10 h-10 text-slate-700" />,
+            title: "Guided Intake Forms",
+            desc: "Collect commodity data, invoices, and customs requirements with structured workflows branded to your firm.",
           },
           {
             icon: <ShieldCheck className="w-10 h-10 text-emerald-600" />,
-            title: "Compliance-Ready Records",
-            desc: "Generate auditable timelines, templated disclosures, and privacy controls built for regulated legal work.",
+            title: "Compliance & Document Vault",
+            desc: "Keep SLAs, licenses, and historical filings in a secure workspace your clients can access anytime.",
           },
         ].map((f, i) => (
           <Card
@@ -158,29 +161,28 @@ export default function HomePage() {
       <section id="how-it-works" className="bg-white py-20 px-6">
         <div className="max-w-5xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-semibold text-slate-900 mb-4">
-            How Qualify Elevates Intake
+            How Qwalify Streamlines Trade Clients
           </h2>
           <p className="text-slate-600 max-w-2xl mx-auto mb-12">
-            Blend the professionalism of your practice with modern automation.
-            Each motion keeps attorneys, paralegals, and intake specialists
-            aligned on the matters that deserve their time.
+            Mirror the look, feel, and speed of your brand while keeping teams
+            aligned on every booking, compliance task, and escalation.
           </p>
           <div className="grid md:grid-cols-3 gap-8 text-left">
             {[
               {
                 step: "01",
-                title: "Capture Every Enquiry",
-                desc: "Embed branded forms on your site, referral portals, or QR signage and never miss a qualified matter again.",
+                title: "Capture Every Trade Enquiry",
+                desc: "Embed portal links on your site or shipment notifications so customers can submit cargo details immediately.",
               },
               {
                 step: "02",
-                title: "Qualify with Intelligence",
-                desc: "Screen conflicts, matter value, and urgency instantly with configurable scoring aligned to your intake policy.",
+                title: "Qwalify & Route Faster",
+                desc: "Qwalify surfaces priority shipments, missing docs, and potential holds so you assign the right specialist.",
               },
               {
                 step: "03",
-                title: "Brief the Legal Team",
-                desc: "Share actionable summaries, automate welcome packets, and schedule consultations without manual back-and-forth.",
+                title: "Brief Ops & Compliance",
+                desc: "Push curated summaries, docs, and tasks to operations, brokers, and compliance teams without manual work.",
               },
             ].map((item) => (
               <div
@@ -212,12 +214,11 @@ export default function HomePage() {
       {/* CTA SECTION */}
       <section className="bg-gradient-to-r from-slate-900 via-slate-800 to-amber-600 text-white text-center py-20 px-6">
         <h2 className="text-3xl md:text-4xl font-semibold mb-4">
-          Bring Concierge-Level Intake to Your Firm
+          Offer a Premium Trade Client Portal
         </h2>
         <p className="text-amber-100 mb-6 max-w-2xl mx-auto">
-          From boutique practices to multi-office firms, Qualify Intake ensures
-          every potential client experiences a polished, secure, and guided
-          welcome.
+          Turn every freight enquiry into a guided workflow—capture documents,
+          monitor status, and keep customers informed without endless emails.
         </p>
         <Link href="/leads">
           <Button
@@ -225,7 +226,7 @@ export default function HomePage() {
             variant="secondary"
             className="bg-white text-slate-900 hover:bg-slate-100 rounded-full px-8 shadow-md font-medium"
           >
-            Schedule a Consultation <ArrowRight className="ml-2 w-4 h-4" />
+            Schedule a Demo <ArrowRight className="ml-2 w-4 h-4" />
           </Button>
         </Link>
       </section>
@@ -236,7 +237,8 @@ export default function HomePage() {
         className="py-10 text-center text-sm text-slate-500 bg-white border-t"
       >
         <p>
-          © {new Date().getFullYear()} Qualify Intake · Purpose-built for law firms
+          © {new Date().getFullYear()} Qwalify Client Portal · Trade-ready
+          collaboration
         </p>
       </footer>
     </main>
