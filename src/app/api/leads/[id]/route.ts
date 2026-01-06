@@ -9,10 +9,10 @@ export async function GET(
   _: NextRequest,
   context: { params: Promise<{ id: string }> }
 ) {
-  const { id } = await context.params // ✅ must await params
-  const session = await getServerSession(authOptions as any)
+  const { id } = await context.params; // ✅ must await params
+  const session = await getServerSession(authOptions);
   if (!session)
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const lead = await AirtableDAL.getLeadById(id, session.user.clientId)
   if (!lead)
@@ -25,10 +25,10 @@ export async function PATCH(
   req: NextRequest,
   context: { params: Promise<{ id: string }> }
 ) {
-  const { id } = await context.params // ✅ must await params
-  const session = await getServerSession(authOptions as any)
+  const { id } = await context.params; // ✅ must await params
+  const session = await getServerSession(authOptions);
   if (!session)
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const data = await req.json()
   const lead = await AirtableDAL.updateLead(id, session.user.clientId, data)

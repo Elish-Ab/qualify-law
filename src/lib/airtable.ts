@@ -23,11 +23,22 @@ const T = {
   leads: process.env.AIRTABLE_LEADS_TABLE!,
 };
 
-const pick = (o: any, keys: string[]) =>
-  keys.reduce((acc, k) => {
-    if (o[k] !== undefined) acc[k] = o[k];
-    return acc;
-  }, {} as any);
+const pick = <T extends Record<string, unknown>>(obj: T, keys: string[]) => {
+  const selected: Record<string, unknown> = {};
+  for (const key of keys) {
+    if (key in obj && obj[key as keyof T] !== undefined) {
+      selected[key] = obj[key as keyof T];
+    }
+  }
+  return selected;
+};
+
+type LeadTemperatureStats = {
+  hot: number;
+  warm: number;
+  cold: number;
+  total: number;
+};
 
 export const AirtableDAL = {
 
@@ -37,7 +48,7 @@ export const AirtableDAL = {
       const clients = await base(T.clients).select().all();
       const leads = await base(T.leads).select().all();
 
-      const grouped: Record<string, any> = {};
+      const grouped: Record<string, LeadTemperatureStats> = {};
 
       for (const lead of leads) {
         const clientRefs = lead.get("Clients");
@@ -89,7 +100,9 @@ export const AirtableDAL = {
       console.log(`✅ Loaded ${recs.length} total leads from Airtable`);
 
       return recs.map((r) => {
-        const rawCreated = (r as any)._rawJson?.createdTime;
+        const rawCreated = (
+          r as unknown as { _rawJson?: { createdTime?: string } }
+        )._rawJson?.createdTime;
         const linkedClients = r.get("Clients");
         const clientId = Array.isArray(linkedClients)
           ? linkedClients[0]
@@ -301,9 +314,11 @@ export const AirtableDAL = {
     console.log("✅ Lead successfully created:", rec[0].id);
 
     return mapLead(rec[0]);
-  } catch (err: any) {
-    console.error("❌ Error creating lead:", err);
-    throw new Error(`Failed to create lead: ${err?.message || "Unknown error"}`);
+  } catch (error) {
+    console.error("❌ Error creating lead:", error);
+    const message =
+      error instanceof Error ? error.message : "Unknown error";
+    throw new Error(`Failed to create lead: ${message}`);
   }
 },
 
@@ -343,7 +358,7 @@ export const AirtableDAL = {
 };
 
 // ---------------- Helper ----------------
-function mapLead(r: Airtable.Record<any>): LeadRecord {
+function mapLead(r: Airtable.Record<Record<string, unknown>>): LeadRecord {
   const rawCreated = (r as unknown as { _rawJson?: { createdTime?: string } })
     ._rawJson?.createdTime;
 
@@ -375,5 +390,3 @@ function mapLead(r: Airtable.Record<any>): LeadRecord {
     createdTime: rawCreated,
   };
 }
-
-

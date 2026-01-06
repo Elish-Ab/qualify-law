@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { signOut } from "next-auth/react";
 import { LogOut } from "lucide-react";
 
@@ -10,15 +11,15 @@ export default function AdminSettingsPage() {
       <aside className="w-64 bg-blue-700 text-white p-6 flex flex-col">
         <h2 className="text-2xl font-bold mb-8">LeadIQ Admin</h2>
         <nav className="flex flex-col space-y-3">
-          <a href="/admin" className="hover:bg-blue-800 px-4 py-2 rounded-md">
+          <Link href="/admin" className="hover:bg-blue-800 px-4 py-2 rounded-md">
             Dashboard
-          </a>
-          <a
+          </Link>
+          <Link
             href="/admin/settings"
             className="bg-white/20 px-4 py-2 rounded-md font-semibold"
           >
             Settings
-          </a>
+          </Link>
         </nav>
         <div className="mt-auto pt-6 border-t border-blue-600 text-sm text-blue-200">
           Signed in as Admin

@@ -1,4 +1,6 @@
 import type { Config } from "tailwindcss"
+import animatePlugin from "tailwindcss-animate"
+
 export default {
   darkMode: ["class"],
   content: [
@@ -7,5 +9,5 @@ export default {
     "./src/components/ui/**/*.{ts,tsx}",
   ],
   theme: { extend: {} },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [animatePlugin],
 } satisfies Config

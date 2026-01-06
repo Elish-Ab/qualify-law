@@ -6,25 +6,44 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 
+type LeadListItem = {
+  id: string;
+  firstName: string;
+  lastName?: string;
+  email?: string;
+  phone?: string;
+  source?: string;
+  status?: string;
+  score?: string;
+  scoringReason?: string;
+  createdTime?: string;
+};
+
+const buildQueryUrl = (search: string, status: string, score: string) =>
+  `/api/leads?search=${encodeURIComponent(search)}&status=${encodeURIComponent(
+    status
+  )}&score=${encodeURIComponent(score)}`;
+
 export default function LeadTable() {
-  const [items, setItems] = useState<any[]>([]);
+  const [items, setItems] = useState<LeadListItem[]>([]);
   const [search, setSearch] = useState("");
   const [filterScore, setFilterScore] = useState("");
   const [filterStatus, setFilterStatus] = useState("");
 
   useEffect(() => {
-    load();
+    const fetchInitial = async () => {
+      const res = await fetch(buildQueryUrl("", "", ""));
+      const data: LeadListItem[] = await res.json();
+      setItems(data);
+    };
+    fetchInitial();
   }, []);
 
-  async function load() {
-    const url = `/api/leads?search=${encodeURIComponent(
-      search
-    )}&status=${encodeURIComponent(filterStatus)}&score=${encodeURIComponent(
-      filterScore
-    )}`;
-    const res = await fetch(url);
-    setItems(await res.json());
-  }
+  const load = async () => {
+    const res = await fetch(buildQueryUrl(search, filterStatus, filterScore));
+    const data: LeadListItem[] = await res.json();
+    setItems(data);
+  };
 
   return (
     <div className="space-y-3">
@@ -34,7 +53,11 @@ export default function LeadTable() {
           placeholder="Search name/email/phone"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          onKeyDown={(e) => e.key === "Enter" && load()}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              void load();
+            }
+          }}
           className="max-w-sm"
         />
         <Input
@@ -49,7 +72,13 @@ export default function LeadTable() {
           onChange={(e) => setFilterScore(e.target.value)}
           className="max-w-[140px]"
         />
-        <Button onClick={load}>Apply</Button>
+        <Button
+          onClick={() => {
+            void load();
+          }}
+        >
+          Apply
+        </Button>
       </div>
 
       {/* Table */}

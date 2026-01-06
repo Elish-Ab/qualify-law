@@ -40,7 +40,13 @@ export const authOptions: NextAuthOptions = {
           return null;
         }
 
-        const storedHash = user.passwordHash || (user as any).password;
+        const storedHash =
+          user.passwordHash ||
+          (typeof user === "object" &&
+          user !== null &&
+          "password" in user
+            ? (user as { password?: string }).password
+            : undefined);
     
 
         if (!storedHash) {
@@ -117,7 +123,11 @@ export const authOptions: NextAuthOptions = {
         token.uid = user.id;
         token.clientId = user.clientId;
         token.clientName = user.clientName;
-        token.role = (user as any).role || "client";
+        const resolvedRole =
+          typeof user === "object" && user && "role" in user && user.role
+            ? (user.role as "admin" | "client")
+            : "client";
+        token.role = resolvedRole;
       }
       return token;
     },
@@ -125,7 +135,9 @@ export const authOptions: NextAuthOptions = {
       session.user.id = token.uid as string;
       session.user.clientId = token.clientId as string;
       session.user.clientName = token.clientName;
-      (session.user as any).role = token.role;
+      if (token.role) {
+        session.user.role = token.role as "admin" | "client";
+      }
       return session;
     },
   },

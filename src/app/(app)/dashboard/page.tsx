@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { motion } from "framer-motion";
 import {
   Card,
@@ -22,6 +22,19 @@ import {
 } from "recharts";
 import { Users, Flame, TrendingUp } from "lucide-react";
 
+type Lead = {
+  id?: string;
+  score: string;
+  status: string;
+  [key: string]: unknown;
+};
+
+type KpiCardProps = {
+  title: string;
+  value: number | string;
+  icon: ReactNode;
+};
+
 const COLORS = {
   Hot: "#ef4444",
   Warm: "#f59e0b",
@@ -29,13 +42,13 @@ const COLORS = {
 };
 
 export default function Dashboard() {
-  const [leads, setLeads] = useState<any[]>([]);
+  const [leads, setLeads] = useState<Lead[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch("/api/leads")
       .then((res) => res.json())
-      .then((data) => setLeads(data))
+      .then((data: Lead[]) => setLeads(data))
       .finally(() => setLoading(false));
   }, []);
 
@@ -155,7 +168,7 @@ export default function Dashboard() {
   );
 }
 
-function KpiCard({ title, value, icon }: any) {
+function KpiCard({ title, value, icon }: KpiCardProps) {
   return (
     <motion.div
       whileHover={{ y: -2 }}

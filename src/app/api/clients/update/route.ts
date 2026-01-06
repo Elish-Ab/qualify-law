@@ -29,7 +29,7 @@ export async function PATCH(req: Request) {
   }
 
   // 1️⃣ Update Users table (name)
-  let userRecords = await findRecordByEmail(USERS_TABLE, "email");
+  const userRecords = await findRecordByEmail(USERS_TABLE, "email");
   if (userRecords.records?.length) {
     const userRecordId = userRecords.records[0].id;
 
@@ -49,7 +49,7 @@ export async function PATCH(req: Request) {
   }
 
   // 2️⃣ Update Clients table (Contact + Email)
-  let clientRecords = await findRecordByEmail(CLIENTS_TABLE, "Email");
+  const clientRecords = await findRecordByEmail(CLIENTS_TABLE, "Email");
   if (clientRecords.records?.length) {
     const clientRecordId = clientRecords.records[0].id;
 

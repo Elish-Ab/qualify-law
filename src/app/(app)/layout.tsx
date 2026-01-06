@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useSession, signOut } from "next-auth/react";
 import { useState, useRef, useEffect } from "react";
@@ -93,7 +94,14 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
               onClick={() => setOpen((prev) => !prev)}
               className="flex items-center gap-2 cursor-pointer hover:bg-gray-100 px-3 py-1 rounded-full transition"
             >
-              <img src={avatar} className="w-8 h-8 rounded-full" alt="User Avatar" />
+              <Image
+                src={avatar}
+                alt="User Avatar"
+                width={32}
+                height={32}
+                className="w-8 h-8 rounded-full object-cover"
+                unoptimized
+              />
               <span className="text-sm font-medium text-gray-700">{displayName}</span>
             </button>
 

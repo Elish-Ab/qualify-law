@@ -39,7 +39,8 @@ export default function SettingsPage() {
       } else {
         setStatus("Error updating profile ❌");
       }
-    } catch (err) {
+    } catch (error) {
+      console.error("Failed to update profile", error);
       setStatus("Network error ❌");
     } finally {
       setIsSaving(false);

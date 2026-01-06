@@ -1,16 +1,33 @@
-//s
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { BarChart3, Users, Flame, Thermometer, Snowflake } from "lucide-react";
 
+type ClientRecord = {
+  id: string;
+  name: string;
+  contact?: string;
+  email?: string;
+  leadStats?: {
+    total?: number;
+  };
+};
+
+type LeadStats = {
+  total?: number;
+  hot?: number;
+  warm?: number;
+  cold?: number;
+};
+
 export default function AdminDashboard() {
   const { data: session, status } = useSession();
   const router = useRouter();
-  const [clients, setClients] = useState<any[]>([]);
-  const [leadStats, setLeadStats] = useState<any | null>(null);
+  const [clients, setClients] = useState<ClientRecord[]>([]);
+  const [leadStats, setLeadStats] = useState<LeadStats | null>(null);
   const [loading, setLoading] = useState(true);
 
   // Redirect if not authenticated
@@ -27,8 +44,8 @@ export default function AdminDashboard() {
           fetch("/api/admin/leads/stats"),
         ]);
 
-        const clientsData = await clientsRes.json();
-        const statsData = await statsRes.json();
+        const clientsData = (await clientsRes.json()) as ClientRecord[];
+        const statsData = (await statsRes.json()) as LeadStats;
 
         setClients(clientsData || []);
         setLeadStats(statsData || {});
@@ -57,12 +74,15 @@ export default function AdminDashboard() {
       <aside className="w-64 bg-blue-700 text-white p-6 flex flex-col">
         <h2 className="text-2xl font-bold mb-8">Qualify Admin</h2>
         <nav className="flex flex-col space-y-3">
-          <a href="/admin" className="hover:bg-blue-800 px-4 py-2 rounded-md">
+          <Link href="/admin" className="hover:bg-blue-800 px-4 py-2 rounded-md">
             Dashboard
-          </a>
-          <a href="/admin/settings" className="hover:bg-blue-800 px-4 py-2 rounded-md">
+          </Link>
+          <Link
+            href="/admin/settings"
+            className="hover:bg-blue-800 px-4 py-2 rounded-md"
+          >
             Settings
-          </a>
+          </Link>
         </nav>
         <div className="mt-auto pt-6 border-t border-blue-600">
           <p className="text-sm text-blue-200">{session.user?.email}</p>

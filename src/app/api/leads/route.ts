@@ -8,7 +8,7 @@ import { notifyN8nLeadChanged } from "@/lib/n8n";
 const N8N_LEAD_WEBHOOK = process.env.N8N_WEBHOOK_URL || ""; // e.g. https://n8n.yourdomain.com/webhook/lead-created
 
 export async function GET(req: NextRequest) {
-  const session = await getServerSession(authOptions as any);
+  const session = await getServerSession(authOptions);
   if (!session) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
@@ -20,7 +20,7 @@ export async function GET(req: NextRequest) {
 }
 
 export async function POST(req: NextRequest) {
-  const session = await getServerSession(authOptions as any);
+  const session = await getServerSession(authOptions);
   if (!session) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
@@ -51,9 +51,8 @@ export async function POST(req: NextRequest) {
     }
 
     return NextResponse.json(lead, { status: 201 });
-  } catch (err: any) {
-    console.error("Error creating lead:", err);
+  } catch (error) {
+    console.error("Error creating lead:", error);
     return NextResponse.json({ error: "Failed to create lead" }, { status: 500 });
   }
 }
-
